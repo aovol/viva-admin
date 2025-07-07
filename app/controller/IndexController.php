@@ -3,11 +3,15 @@
 namespace app\controller;
 
 use support\Request;
+use Aovol\Test\Test;
 
 class IndexController
 {
     public function index(Request $request)
     {
+        $test = new Test();
+        return $test->test();
+
         return <<<EOF
 <style>
   * {

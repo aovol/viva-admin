@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of webman.
  *
@@ -48,6 +49,7 @@ return [
                 base_path() . '/support',
                 base_path() . '/resource',
                 base_path() . '/.env',
+                base_path() . '/vendor/aovol/webman-auth/src',
             ], glob(base_path() . '/plugin/*/app'), glob(base_path() . '/plugin/*/config'), glob(base_path() . '/plugin/*/api')),
             // Files with these suffixes will be monitored
             'monitorExtensions' => [
