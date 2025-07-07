@@ -28,23 +28,22 @@
     "workerman/webman-framework": "^2.1",
     "monolog/monolog": "^2.0",
     "aovol/webman-resource": "dev-main",
-    "kalnoy/nestedset": "^6.0",
-    "vlucas/phpdotenv": "^5.6",
-    "phpoption/phpoption": "^1.9",
-    "firebase/php-jwt": "^6.11",
     "webman/console": "^2.1",
+    "kalnoy/nestedset": "^6.0",
     "webman/database": "^2.1",
     "illuminate/pagination": "^12.19",
     "illuminate/events": "^12.19",
     "symfony/var-dumper": "^7.3",
-    "aovol/easyauth": "dev-main"
+    "firebase/php-jwt": "^6.11",
+    "webman-tech/laravel-validation": "^12.0",
+    "webman-tech/laravel-translation": "^12.0"
   },
   "suggest": {
     "ext-event": "For better performance. "
   },
   "autoload": {
     "psr-4": {
-      "Aovol\\Demo\\" : "vendor/aovol/demo/src",
+      "Aovol\\WebmanAuth\\" : "vendor/aovol/webman-auth/src",
       "": "./",
       "app\\": "./app",
       "App\\": "./app",

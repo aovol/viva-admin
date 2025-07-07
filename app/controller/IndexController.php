@@ -3,12 +3,15 @@
 namespace app\controller;
 
 use support\Request;
+use Aovol\Test\Test;
 
 class IndexController
 {
   public function index(Request $request)
   {
-    return json(['code' => env('APP_NAME'), 'msg' => 'ok']);
+    $test = new Test();
+    return $test->test();
+
     return <<<EOF
 <style>
   * {
