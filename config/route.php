@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of webman.
  *
@@ -13,9 +14,8 @@
  */
 
 use Webman\Route;
+use app\admin\controller\AuthController;
 
-
-
-
-
-
+Route::group('admin', function () {
+    Route::post('/auth/login', [AuthController::class, 'login']);
+});
