@@ -36,7 +36,10 @@
     "symfony/var-dumper": "^7.3",
     "firebase/php-jwt": "^6.11",
     "webman-tech/laravel-validation": "^12.0",
-    "webman-tech/laravel-translation": "^12.0"
+    "webman-tech/laravel-translation": "^12.0",
+    "phpoption/phpoption": "^1.9",
+    "vlucas/phpdotenv": "^5.6",
+    "webman/cors": "^1.0"
   },
   "suggest": {
     "ext-event": "For better performance. "
@@ -66,7 +69,7 @@
   "repositories": [
     {
       "type": "path",
-      "url": "./vendor/aovol/easyauth"
+      "url": "./vendor/aovol/webman-auth"
     }
   ]
 }

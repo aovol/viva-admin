@@ -14,8 +14,7 @@
  */
 
 use Webman\Route;
-use app\admin\controller\AuthController;
 
-Route::group('admin', function () {
-    Route::post('/auth/login', [AuthController::class, 'login']);
+Route::options('[{path:.+}]', function () {
+    return response('');
 });

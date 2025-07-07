@@ -1,7 +1,5 @@
 <?php
 
-return [
-    '' => [
-        
-    ]
-];
+namespace plugin\admin\config;
+
+return [];

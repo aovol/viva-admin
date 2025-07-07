@@ -5,6 +5,7 @@ namespace plugin\admin\app\controller;
 use support\Request;
 use Aovol\WebmanAuth\Facade\Auth;
 use app\controller\BaseController;
+use plugin\admin\resource\AdminResource;
 
 class AuthController extends BaseController
 {
@@ -26,6 +27,6 @@ class AuthController extends BaseController
     public function user(Request $request)
     {
         $user = Auth::guard('admin')->user();
-        return $this->success($user);
+        return $this->success(new AdminResource($user));
     }
 }

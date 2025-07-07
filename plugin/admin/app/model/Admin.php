@@ -7,10 +7,11 @@ use support\Model;
 
 class Admin extends Model implements AuthModelInterface
 {
+    protected $fillable = ['username', 'password'];
     protected $hidden = ['password'];
 
     public function findUser($username)
     {
-        return $this->where('username', 'admin')->first();
+        return $this->where('username', $username)->first();
     }
 }

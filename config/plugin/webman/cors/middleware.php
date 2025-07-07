@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of webman.
  *
@@ -14,7 +13,7 @@
  */
 
 return [
-    '@' => [
-        app\middleware\CrosMiddleware::class,
+    '' => [
+        \Webman\Cors\CORS::class
     ]
 ];
