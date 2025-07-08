@@ -9,16 +9,30 @@ class Menu extends Model
 {
     use NodeTrait;
 
-    protected $fillable = ['name', 'parent_id', 'left', 'right', 'depth'];
+    protected $fillable = [
+        'name',
+        'slug',
+        'icon',
+        'path',
+        'component',
+        'redirect',
+        'hidden',
+        'lft',
+        'rgt',
+        'parent_id',
+        'permission',
+        'sort',
+        'status',
+    ];
 
     public function getLftName()
     {
-        return 'left';
+        return 'lft';
     }
 
     public function getRgtName()
     {
-        return 'right';
+        return 'rgt';
     }
 
     public function getParentIdName()

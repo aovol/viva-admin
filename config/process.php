@@ -50,7 +50,7 @@ return [
                 base_path() . '/resource',
                 base_path() . '/.env',
                 base_path() . '/vendor/aovol/webman-auth/src',
-            ], glob(base_path() . '/plugin/*/app'), glob(base_path() . '/plugin/*/config'), glob(base_path() . '/plugin/*/api')),
+            ], glob(base_path() . '/plugin/*/app'), glob(base_path() . '/plugin/*/config'), glob(base_path() . '/plugin/*/api'), glob(base_path() . '/plugin/*/resource')),
             // Files with these suffixes will be monitored
             'monitorExtensions' => [
                 'php',

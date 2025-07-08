@@ -2,7 +2,6 @@
 
 namespace app\controller;
 
-
 abstract class BaseController
 {
     public function message($data = [], $msg = '', $code = 0)
@@ -20,6 +19,7 @@ abstract class BaseController
                 $bag['data'] = $data;
             }
         }
+
         return json($bag);
     }
 
