@@ -23,6 +23,7 @@ class Menu extends Model
         'permission',
         'sort',
         'status',
+        'show_page_head',
     ];
 
     public function getLftName()

@@ -27,7 +27,6 @@
     "php": ">=8.1",
     "workerman/webman-framework": "^2.1",
     "monolog/monolog": "^2.0",
-    "aovol/webman-resource": "dev-main",
     "webman/console": "^2.1",
     "kalnoy/nestedset": "^6.0",
     "webman/database": "^2.1",
@@ -40,7 +39,8 @@
     "phpoption/phpoption": "^1.9",
     "vlucas/phpdotenv": "^5.6",
     "webman/cors": "^1.0",
-    "x2nx/webman-migrate": "^0.0.8"
+    "x2nx/webman-migrate": "^0.0.8",
+    "aovol/webman-resource": "dev-main"
   },
   "suggest": {
     "ext-event": "For better performance. "

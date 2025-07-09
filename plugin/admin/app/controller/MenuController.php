@@ -11,7 +11,8 @@ class MenuController extends BaseController
 {
     public function index(Request $request)
     {
-        $menus = Menu::get()->toTree();
+        Menu::fixTree();
+        $menus = Menu::orderBy('sort', 'desc')->get()->toTree();
         return $this->success(MenuResource::collection($menus));
     }
 
@@ -24,7 +25,7 @@ class MenuController extends BaseController
     {
         $validator = validator($request->post(), [
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:menu,slug',
+            'slug' => 'required|string|max:255|unique:menus,slug',
             'path' => 'required|string|max:255',
         ], [
             'name.required' => '菜单名称不能为空',
@@ -35,7 +36,7 @@ class MenuController extends BaseController
         if ($validator->fails()) {
             return $this->error($validator->errors()->first());
         }
-        $menu = Menu::create($request->post());
+        $menu = Menu::query()->create($request->post());
         return $this->success($menu, '菜单创建成功');
     }
 
