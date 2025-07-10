@@ -15,6 +15,60 @@ class MenuSeeder extends Seeder
     {
         $menus = [
             [
+                'name' => '仪表盘',
+                'slug' => 'dashboard',
+                'icon' => 'dashboard',
+                'path' => '/dashboard',
+                'redirect' => '/dashboard/index',
+                'children' => [
+                    [
+                        'name' => '概览',
+                        'slug' => 'dashboard-index',
+                        'icon' => 'dashboard',
+                        'path' => '/dashboard/index',
+                        'component' => '/dashboard/index',
+                    ],
+                    [
+                        'name' => '统计',
+                        'slug' => 'dashboard-statistics',
+                        'icon' => 'dashboard',
+                        'path' => '/dashboard/statistics',
+                        'component' => '/dashboard/statistics',
+                    ]
+                ]
+            ],
+            [
+                'name' => '内容管理',
+                'slug' => 'content',
+                'icon' => 'content',
+                'path' => '/content',
+                'component' => '',
+                'redirect' => '/content/article',
+                'children' => [
+                    [
+                        'name' => '文章',
+                        'slug' => 'content-article',
+                        'icon' => 'article',
+                        'path' => '/content/article',
+                        'component' => '/content/article/index',
+                    ],
+                    [
+                        'name' => '栏目',
+                        'slug' => 'content-category',
+                        'icon' => 'category',
+                        'path' => '/content/category',
+                        'component' => '/content/category/index',
+                    ],
+                    [
+                        'name' => '标签',
+                        'slug' => 'content-tag',
+                        'icon' => 'tag',
+                        'path' => '/content/tag',
+                        'component' => '/content/tag/index',
+                    ]
+                ]
+            ],
+            [
                 'name' => '系统管理',
                 'slug' => 'system',
                 'icon' => 'system',
@@ -27,7 +81,28 @@ class MenuSeeder extends Seeder
                         'slug' => 'system-menu',
                         'icon' => 'menu',
                         'path' => '/system/menu',
-                        'component' => 'system/menu/index',
+                        'component' => '/system/menu/index',
+                    ],
+                    [
+                        'name' => '设置',
+                        'slug' => 'system-setting',
+                        'icon' => 'dashboard',
+                        'path' => '/system/setting',
+                        'component' => '/system/setting/index',
+                    ],
+                    [
+                        'name' => '角色权限',
+                        'slug' => 'system-role',
+                        'icon' => 'role',
+                        'path' => '/system/role',
+                        'component' => '/system/role/index',
+                    ],
+                    [
+                        'name' => '管理员',
+                        'slug' => 'system-admin',
+                        'icon' => 'admin',
+                        'path' => '/system/admin',
+                        'component' => '/system/admin/index',
                     ]
                 ]
             ]
@@ -38,7 +113,7 @@ class MenuSeeder extends Seeder
                 'slug' => $menuItem['slug'],
                 'icon' => $menuItem['icon'],
                 'path' => $menuItem['path'],
-                'component' => $menuItem['component'],
+                'component' => $menuItem['component'] ?? '',
                 'redirect' => $menuItem['redirect'],
                 'parent_id' => 0,
             ]);
@@ -50,7 +125,7 @@ class MenuSeeder extends Seeder
                         'slug' => $child['slug'],
                         'icon' => $child['icon'],
                         'path' => $child['path'],
-                        'component' => $child['component'],
+                        'component' => $child['component'] ?? '',
                         'parent_id' => $menu->id,
                     ]);
                 }

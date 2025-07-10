@@ -10,7 +10,6 @@ class CrosMiddleware implements MiddlewareInterface
 {
     public function process(Request $request, callable $handler): Response
     {
-        var_dump($request->method());
         $response = $request->method() == 'OPTIONS' ? response('') : $handler($request);
 
         $response->withHeaders([

@@ -46,4 +46,15 @@ class MenuController extends BaseController
         $menu->update($request->post());
         return $this->success($menu, '菜单更新成功');
     }
+
+    public function delete(Request $request)
+    {
+        $menu = Menu::query()->withCount('children')->find($request->post('menuId'));
+        return $this->success($menu, '菜单删除成功');
+        if ($menu->children_count > 0) {
+            return $this->error('菜单下有子菜单，不能删除');
+        }
+        $menu->delete();
+        return $this->success(null, '菜单删除成功');
+    }
 }
