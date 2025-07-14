@@ -1,6 +1,6 @@
 <?php
 
-namespace plugin\admin\resource;
+namespace plugin\admin\app\resources;
 
 use WebmanResource\JsonResource;
 use Carbon\Carbon;

@@ -6,10 +6,9 @@ use support\Request;
 
 class IndexController
 {
-
     public function index()
     {
-        return view('index/index', ['name' => 'admin']);
+        return json(base_path());
     }
 
 }

@@ -4,8 +4,7 @@ namespace plugin\admin\app\controller;
 
 use support\Request;
 use plugin\admin\app\model\Menu;
-use app\controller\BaseController;
-use plugin\admin\resource\MenuResource;
+use plugin\admin\app\resources\MenuResource;
 
 class MenuController extends BaseController
 {
@@ -50,7 +49,6 @@ class MenuController extends BaseController
     public function delete(Request $request)
     {
         $menu = Menu::query()->withCount('children')->find($request->post('menuId'));
-        return $this->success($menu, '菜单删除成功');
         if ($menu->children_count > 0) {
             return $this->error('菜单下有子菜单，不能删除');
         }

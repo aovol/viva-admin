@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controller;
+namespace plugin\admin\app\controller;
 
 abstract class BaseController
 {

@@ -5,6 +5,7 @@ use plugin\admin\app\controller\AuthController;
 use plugin\admin\app\controller\MenuController;
 use plugin\admin\app\controller\PermissionController;
 use plugin\admin\app\controller\RoleController;
+use plugin\admin\app\controller\AdminController;
 
 Route::disableDefaultRoute('admin');
 //跨域检测
@@ -16,6 +17,13 @@ Route::group('/admin', function () {
     Route::get('/user', [AuthController::class, 'user']);
 
     Route::group('/system', function () {
+        Route::group('/admin', function () {
+            Route::get('', [AdminController::class, 'index']);
+            Route::post('/create', [AdminController::class, 'create']);
+            Route::post('/update', [AdminController::class, 'update']);
+            Route::post('/delete', [AdminController::class, 'delete']);
+        });
+
         Route::group('/menu', function () {
             Route::get('', [MenuController::class, 'index']);
             Route::post('/create', [MenuController::class, 'create']);

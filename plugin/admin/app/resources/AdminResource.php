@@ -1,6 +1,6 @@
 <?php
 
-namespace plugin\admin\resource;
+namespace plugin\admin\app\resources;
 
 use WebmanResource\JsonResource;
 use plugin\admin\app\model\Admin;
@@ -14,7 +14,7 @@ class AdminResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'username' => $this->username,
+            'name' => $this->name,
             'created_at' => Carbon::parse($this->created_at)->toDateTimeString(),
         ];
     }
