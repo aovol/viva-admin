@@ -6,7 +6,7 @@ use Phinx\Config\Config;
 
 class SeedRunCommand extends \Phinx\Console\Command\SeedRun
 {
-    protected static $defaultName = 'phinx:seed:run';
+    protected static $defaultName = 'db:seed';
 
     protected static string $defaultDescription = '运行数据库种子';
 

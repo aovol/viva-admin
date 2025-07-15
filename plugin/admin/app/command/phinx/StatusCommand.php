@@ -6,7 +6,7 @@ use Phinx\Config\Config;
 
 class StatusCommand extends \Phinx\Console\Command\Status
 {
-    protected static $defaultName = 'phinx:status';
+    protected static $defaultName = 'migrate:status';
 
     protected static string $defaultDescription = '显示迁移状态';
 

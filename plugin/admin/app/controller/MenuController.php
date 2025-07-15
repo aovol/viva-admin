@@ -4,7 +4,7 @@ namespace plugin\admin\app\controller;
 
 use support\Request;
 use plugin\admin\app\model\Menu;
-use plugin\admin\app\resources\MenuResource;
+use plugin\admin\resource\MenuResource;
 
 class MenuController extends BaseController
 {

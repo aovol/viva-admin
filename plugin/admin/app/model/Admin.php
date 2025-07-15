@@ -7,7 +7,7 @@ use support\Model;
 
 class Admin extends Model implements AuthModelInterface
 {
-    protected $fillable = ['name', 'password', 'status', 'last_login_log_id'];
+    protected $fillable = ['name', 'password', 'status', 'last_login_id'];
     protected $hidden = ['password'];
 
     public function findUser($username)

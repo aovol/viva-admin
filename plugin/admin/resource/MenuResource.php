@@ -1,12 +1,14 @@
 <?php
 
-namespace plugin\admin\app\resources;
+namespace plugin\admin\resource;
 
 use WebmanResource\JsonResource;
+use plugin\admin\app\model\Menu;
 use Carbon\Carbon;
 
 class MenuResource extends JsonResource
 {
+    public $model = Menu::class;
     public function toArray($request = null): array
     {
         $data = [

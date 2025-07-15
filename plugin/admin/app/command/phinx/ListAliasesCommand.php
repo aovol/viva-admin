@@ -6,7 +6,7 @@ use Phinx\Config\Config;
 
 class ListAliasesCommand extends \Phinx\Console\Command\ListAliases
 {
-    protected static $defaultName = 'phinx:list:aliases';
+    protected static $defaultName = 'migrate:list';
 
     protected static string $defaultDescription = '列出模板类别名';
 

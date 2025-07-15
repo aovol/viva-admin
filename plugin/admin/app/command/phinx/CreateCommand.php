@@ -9,7 +9,7 @@ use Phinx\Config\Config;
 
 class CreateCommand extends \Phinx\Console\Command\Create
 {
-    protected static $defaultName = 'phinx:create';
+    protected static $defaultName = 'make:migration';
 
     protected static string $defaultDescription = '创建Phinx迁移';
 

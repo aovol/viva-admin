@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0f10bd0fbdc6fa6ec22ce5c242b7884c",
+    "content-hash": "eee2d4b130307d87d2cb3a826b140bdc",
     "packages": [
         {
             "name": "aovol/webman-auth",
@@ -48,12 +48,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aovol/webman-resource.git",
-                "reference": "5e078f0ed5ef6c09bf750733ead9845a49f99bf7"
+                "reference": "13a7bec6efab67804b1ff867d663b2e1bf931a52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aovol/webman-resource/zipball/5e078f0ed5ef6c09bf750733ead9845a49f99bf7",
-                "reference": "5e078f0ed5ef6c09bf750733ead9845a49f99bf7",
+                "url": "https://api.github.com/repos/aovol/webman-resource/zipball/13a7bec6efab67804b1ff867d663b2e1bf931a52",
+                "reference": "13a7bec6efab67804b1ff867d663b2e1bf931a52",
                 "shasum": ""
             },
             "require": {
@@ -82,7 +82,7 @@
                 "issues": "https://github.com/aovol/webman-resource/issues",
                 "source": "https://github.com/aovol/webman-resource/tree/main"
             },
-            "time": "2025-07-09T11:44:46+00:00"
+            "time": "2025-07-15T05:37:43+00:00"
         },
         {
             "name": "brick/math",

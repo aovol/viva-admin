@@ -6,7 +6,7 @@ use Phinx\Config\Config;
 
 class SeedCreateCommand extends \Phinx\Console\Command\SeedCreate
 {
-    protected static $defaultName = 'phinx:seed:create';
+    protected static $defaultName = 'make:seed';
 
     protected static string $defaultDescription = '创建一个新的数据库种子';
 

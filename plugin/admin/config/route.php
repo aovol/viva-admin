@@ -36,6 +36,8 @@ Route::group('/admin', function () {
             Route::post('/create', [PermissionController::class, 'create']);
             Route::post('/update', [PermissionController::class, 'update']);
             Route::post('/delete', [PermissionController::class, 'delete']);
+            Route::get('/controllers', [PermissionController::class, 'controllers']);
+            Route::get('/groups', [PermissionController::class, 'groups']);
         });
 
         Route::group('/role', function () {

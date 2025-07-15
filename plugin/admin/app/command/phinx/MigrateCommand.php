@@ -7,7 +7,7 @@ use Phinx\Console\Command\Migrate as PhinxMigrateCommand;
 
 class MigrateCommand extends PhinxMigrateCommand
 {
-    protected static $defaultName = 'phinx:migrate';
+    protected static $defaultName = 'migrate';
     protected static string $defaultDescription = '迁移数据库';
 
     public function __construct()

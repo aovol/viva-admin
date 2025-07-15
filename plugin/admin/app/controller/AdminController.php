@@ -4,7 +4,7 @@ namespace plugin\admin\app\controller;
 
 use support\Request;
 use plugin\admin\app\model\Admin;
-use plugin\admin\app\resources\AdminResource;
+use plugin\admin\resource\AdminResource;
 
 class AdminController extends BaseController
 {
@@ -65,6 +65,9 @@ class AdminController extends BaseController
     {
         $aId = $request->post('id');
         $admin = Admin::find($aId);
+        if ($admin->name === 'admin') {
+            return $this->error('超级管理员不能删除');
+        }
         if (!$admin) {
             return $this->error('管理员不存在');
         }

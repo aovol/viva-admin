@@ -4,7 +4,7 @@ namespace plugin\admin\app\controller;
 
 use support\Request;
 use Aovol\WebmanAuth\Facade\Auth;
-use plugin\admin\app\resources\AdminResource;
+use plugin\admin\resource\AdminResource;
 
 class AuthController extends BaseController
 {

@@ -1,21 +1,21 @@
 <?php
 
-namespace plugin\admin\app\resources;
+namespace plugin\admin\resource;
 
 use WebmanResource\JsonResource;
-use plugin\admin\app\model\Admin;
 use Carbon\Carbon;
 
-class AdminResource extends JsonResource
+class PermissionResource extends JsonResource
 {
-    public $model = Admin::class;
-
     public function toArray($request = null): array
     {
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'guard_name' => $this->guard_name,
+            'slug' => $this->slug,
             'created_at' => Carbon::parse($this->created_at)->toDateTimeString(),
+            'updated_at' => Carbon::parse($this->updated_at)->toDateTimeString(),
         ];
     }
 }

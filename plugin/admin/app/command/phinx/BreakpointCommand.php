@@ -6,7 +6,7 @@ use Phinx\Config\Config;
 
 class BreakpointCommand extends \Phinx\Console\Command\Breakpoint
 {
-    protected static $defaultName = 'phinx:breakpoint';
+    protected static $defaultName = 'migrate:breakpoint';
 
     protected static string $defaultDescription = '管理断点';
 

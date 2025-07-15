@@ -6,7 +6,7 @@ use Phinx\Config\Config;
 
 class RollbackCommand extends \Phinx\Console\Command\Rollback
 {
-    protected static $defaultName = 'phinx:rollback';
+    protected static $defaultName = 'migrate:rollback';
 
     protected static string $defaultDescription = '回滚最后一个或指定迁移';
 
