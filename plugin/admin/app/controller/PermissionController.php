@@ -89,6 +89,7 @@ class PermissionController extends BaseController
         }
         return $this->success([
             'admin' => $methods,
+            'user' => [],
         ]);
     }
 
