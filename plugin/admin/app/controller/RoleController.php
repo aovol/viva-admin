@@ -26,7 +26,7 @@ class RoleController extends BaseController
         $v = validator($request->all(), [
             'guard_name' => 'required|string',
             'name' => 'required|string',
-            'slug' => 'required|string',
+            'slug' => 'required|string|unique:roles,slug',
         ], [
             'name.required' => '请输入角色名称',
             'name.string' => '角色名称必须是字符串',
@@ -34,6 +34,7 @@ class RoleController extends BaseController
             'guard_name.string' => '角色类型必须是字符串',
             'slug.required' => '请输入角色标识',
             'slug.string' => '角色标识必须是字符串',
+            'slug.unique' => '角色标识已存在',
         ]);
         if ($v->fails()) {
             return $this->error($v->errors()->first(), 422);
@@ -47,13 +48,14 @@ class RoleController extends BaseController
         $v = validator($request->all(), [
             'id' => 'required|integer',
             'name' => 'required|string',
-            'slug' => 'required|string',
+            'slug' => 'required|string|unique:roles,slug,' . $request->post('id'),
         ], [
             'name.required' => '请输入角色名称',
             'name.string' => '角色名称必须是字符串',
             'slug.required' => '请输入角色标识',
             'id.required' => '角色ID不能为空',
             'id.integer' => '角色ID必须是整数',
+            'slug.unique' => '角色标识已存在',
         ]);
         if ($v->fails()) {
             return $this->error($v->errors()->first(), 422);

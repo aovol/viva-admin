@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 use Phinx\Seed\AbstractSeed;
-use plugin\admin\app\model\Menu;
+use plugin\admin\app\model\Node;
 
-class MenuSeeder extends AbstractSeed
+class NodeSeeder extends AbstractSeed
 {
     /**
      * Run Method.
@@ -45,14 +45,14 @@ class MenuSeeder extends AbstractSeed
                 'name' => '系统管理',
                 'slug' => 'system',
                 'path' => '/system',
-                'redirect' => '/system/menu',
+                'redirect' => '/system/node',
                 'icon' => 'dashboard',
                 'children' => [
                     [
-                        'name' => '菜单',
-                        'slug' => 'system-menu',
-                        'path' => '/system/menu',
-                        'component' => '/system/menu/index',
+                        'name' => '节点',
+                        'slug' => 'system-node',
+                        'path' => '/system/node',
+                        'component' => '/system/node/index',
                         'icon' => 'menu',
                     ],
                     [
@@ -61,13 +61,6 @@ class MenuSeeder extends AbstractSeed
                         'path' => '/system/role',
                         'component' => '/system/role/index',
                         'icon' => 'role',
-                    ],
-                    [
-                        'name' => '权限',
-                        'slug' => 'system-permission',
-                        'path' => '/system/permission',
-                        'component' => '/system/permission/index',
-                        'icon' => 'permission',
                     ],
                     [
                         'name' => '管理员',
@@ -80,7 +73,7 @@ class MenuSeeder extends AbstractSeed
             ],
         ];
         foreach ($menuItems as $menuItem) {
-            $menu = Menu::create($menuItem);
+            $menu = Node::create($menuItem);
             // if (isset($menuItem['children'])) {
             //     foreach ($menuItem['children'] as $child) {
             //         $child['parent_id'] = $menu->id;

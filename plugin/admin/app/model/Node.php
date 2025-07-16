@@ -5,24 +5,25 @@ namespace plugin\admin\app\model;
 use support\Model;
 use Kalnoy\Nestedset\NodeTrait;
 
-class Menu extends Model
+class Node extends Model
 {
     use NodeTrait;
 
     protected $fillable = [
         'name',
+        'guard_name',
         'slug',
-        'icon',
+        'parent_id',
         'path',
         'component',
         'redirect',
-        'hidden',
+        'icon',
+        'sort',
         'lft',
         'rgt',
-        'parent_id',
-        'permission',
-        'sort',
         'status',
+        'type',
+        'is_show',
         'show_page_head',
     ];
 

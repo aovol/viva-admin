@@ -24,7 +24,6 @@ final class Permissions extends AbstractMigration
             ->addColumn('guard_name', 'string', ['limit' => 255])
             ->addColumn('group_name', 'string', ['limit' => 255, 'null' => true])
             ->addColumn('slug', 'string', ['limit' => 255])
-            ->addColumn('path', 'string', ['limit' => 255])
             ->addColumn('description', 'string', ['limit' => 255, 'null' => true])
             ->addColumn('created_at', 'datetime', ['null' => true])
             ->addColumn('updated_at', 'datetime', ['null' => true])

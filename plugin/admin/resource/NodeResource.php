@@ -3,17 +3,19 @@
 namespace plugin\admin\resource;
 
 use WebmanResource\JsonResource;
-use plugin\admin\app\model\Menu;
+use plugin\admin\app\model\Node;
 use Carbon\Carbon;
 
-class MenuResource extends JsonResource
+class NodeResource extends JsonResource
 {
-    public $model = Menu::class;
+    public $model = Node::class;
     public function toArray($request = null): array
     {
         $data = [
             'id' => $this->id,
+            'type' => $this->type,
             'name' => $this->name,
+            'guard_name' => $this->guard_name,
             'slug' => $this->slug,
             'icon' => $this->icon,
             'path' => $this->path,
@@ -23,11 +25,12 @@ class MenuResource extends JsonResource
             'parent_id' => $this->parent_id,
             'sort' => $this->sort,
             'status' => (bool) $this->status,
+            'is_show' => (bool) $this->is_show,
             'show_page_head' => (bool) $this->show_page_head,
             'created_at' => $this->created_at ? Carbon::parse($this->created_at)->toDateTimeString() : null,
         ];
         if ($this->children) {
-            $data['children'] = MenuResource::collection($this->children);
+            $data['children'] = NodeResource::collection($this->children);
         }
         return $data;
     }

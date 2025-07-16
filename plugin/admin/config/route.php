@@ -2,10 +2,10 @@
 
 use Webman\Route;
 use plugin\admin\app\controller\AuthController;
-use plugin\admin\app\controller\MenuController;
 use plugin\admin\app\controller\PermissionController;
 use plugin\admin\app\controller\RoleController;
 use plugin\admin\app\controller\AdminController;
+use plugin\admin\app\controller\NodeController;
 
 Route::disableDefaultRoute('admin');
 //跨域检测
@@ -24,11 +24,11 @@ Route::group('/admin', function () {
             Route::post('/delete', [AdminController::class, 'delete']);
         });
 
-        Route::group('/menu', function () {
-            Route::get('', [MenuController::class, 'index']);
-            Route::post('/create', [MenuController::class, 'create']);
-            Route::post('/update', [MenuController::class, 'update']);
-            Route::post('/delete', [MenuController::class, 'delete']);
+        Route::group('/node', function () {
+            Route::get('', [NodeController::class, 'index']);
+            Route::post('/create', [NodeController::class, 'create']);
+            Route::post('/update', [NodeController::class, 'update']);
+            Route::post('/delete', [NodeController::class, 'delete']);
         });
 
         Route::group('/permission', function () {
