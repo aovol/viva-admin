@@ -26,7 +26,7 @@ return [
         'adapter' => Casbin\WebmanPermission\Adapter\LaravelDatabaseAdapter::class, // Laravel 适配器
         // 数据库设置
         'database' => [
-            'connection' => '',
+            'connection' => 'mysql',
             'rules_table' => 'vi_rules',
             'rules_name' => null
         ],
@@ -40,8 +40,8 @@ return [
         ],
         'adapter' => Casbin\WebmanPermission\Adapter\DatabaseAdapter::class, // ThinkORM 适配器
         'database' => [
-            'connection' => '',
-            'rules_table' => 'vi_rules',
+            'connection' => 'mysql',
+            'rules_table' => 'rules',
             'rules_name' => null
         ],
     ],

@@ -5,13 +5,21 @@ namespace plugin\admin\app\controller;
 use support\Request;
 use plugin\admin\app\model\Node;
 use plugin\admin\resource\NodeResource;
+use WebmanTech\LaravelValidation\Facades\Validator;
 
 class NodeController extends BaseController
 {
     public function index(Request $request)
     {
         Node::fixTree();
-        $nodes = Node::orderBy('sort', 'desc')->get()->toTree();
+
+        $w = [];
+        $type = $request->get('type');
+        if ($type) {
+            $w['type'] = $type;
+        }
+        $nodes = Node::where($w)->orderBy('sort', 'desc')->get()->toTree();
+
         return $this->success(NodeResource::collection($nodes));
     }
 
@@ -25,23 +33,21 @@ class NodeController extends BaseController
         $data = $request->post();
         $data['parent_id'] = $data['parent_id'] ?? 0;
 
-        $validator = validator($data, [
+        $validator = Validator::make($data, [
             'name' => 'required_if:type,menu|string|max:255',
             'slug' => 'required_if:type,menu|string|max:255|unique:nodes,slug',
             'path' => 'required_if:type,menu|string|max:255',
-            'batch_permissions' => [
-                function (string $attribute, mixed $value, Closure $fail) use ($data) {
-                    if ($data['type'] == 'permission' && $data['create_type'] == 'batch' && empty($value)) {
-                        $fail('请输入批量添加的节点');
-                    }
-                },
-            ],
         ], [
             'name.required_if' => '请输入节点名称',
             'slug.required_if' => '请输入节点别名',
             'slug.unique' => '节点别名已存在',
             'path.required_if' => '请输入节点路径',
         ]);
+        $validator->after(function ($validator) use ($data) {
+            if ($data['type'] == 'permission' && $data['create_type'] == 'batch' && empty($data['batch_permissions'])) {
+                $validator->errors()->add('batch_permissions', '请输入批量添加的节点');
+            }
+        });
         if ($validator->fails()) {
             return $this->error($validator->errors()->first());
         }

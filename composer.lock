@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eee2d4b130307d87d2cb3a826b140bdc",
+    "content-hash": "5ec5038679f7d572a676ecfa19b78764",
     "packages": [
         {
             "name": "aovol/webman-auth",

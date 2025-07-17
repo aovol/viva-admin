@@ -31,7 +31,7 @@
     "kalnoy/nestedset": "^6.0",
     "webman/database": "^2.1",
     "illuminate/pagination": "^12.20",
-    "illuminate/events": "^12.19",
+    "illuminate/events": "^12.20",
     "symfony/var-dumper": "^7.3",
     "firebase/php-jwt": "^6.11",
     "webman-tech/laravel-validation": "^12.0",

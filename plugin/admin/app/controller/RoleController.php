@@ -5,6 +5,7 @@ namespace plugin\admin\app\controller;
 use support\Request;
 use plugin\admin\app\model\Role;
 use plugin\admin\resource\RoleResource;
+use Casbin\WebmanPermission\Permission;
 
 class RoleController extends BaseController
 {
@@ -45,10 +46,13 @@ class RoleController extends BaseController
 
     public function update(Request $request)
     {
-        $v = validator($request->all(), [
+        Permission::addPolicy($request->post('slug'), 'system-node-create');
+        return json($request->all());
+        $data = $request->post();
+        $v = validator($data, [
             'id' => 'required|integer',
             'name' => 'required|string',
-            'slug' => 'required|string|unique:roles,slug,' . $request->post('id'),
+            'slug' => 'required|string|unique:roles,slug,' . $data['id'],
         ], [
             'name.required' => '请输入角色名称',
             'name.string' => '角色名称必须是字符串',
@@ -60,11 +64,12 @@ class RoleController extends BaseController
         if ($v->fails()) {
             return $this->error($v->errors()->first(), 422);
         }
-        $role = Role::find($request->post('id'));
+        $role = Role::find($data['id']);
         if (!$role) {
             return $this->error('角色不存在', 404);
         }
-        $role->update($request->all());
+        return json($data);
+        $role->update($data);
         return $this->message('更新角色成功');
     }
 
