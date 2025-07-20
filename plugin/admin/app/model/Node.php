@@ -11,8 +11,6 @@ class Node extends Model
 
     protected $fillable = [
         'name',
-        'guard_name',
-        'slug',
         'parent_id',
         'path',
         'component',
@@ -25,6 +23,7 @@ class Node extends Model
         'type',
         'is_show',
         'show_page_head',
+        'method',
     ];
 
     public function getLftName()

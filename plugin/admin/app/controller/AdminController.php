@@ -5,6 +5,8 @@ namespace plugin\admin\app\controller;
 use support\Request;
 use plugin\admin\app\model\Admin;
 use plugin\admin\resource\AdminResource;
+use Casbin\WebmanPermission\Permission;
+use support\Db;
 
 class AdminController extends BaseController
 {
@@ -44,21 +46,32 @@ class AdminController extends BaseController
 
     public function update(Request $request)
     {
-        $aId = $request->post('id');
-        $password = $request->post('password');
-        $admin = Admin::find($aId);
-        if (!$admin) {
-            return $this->error('管理员不存在');
-        }
-        $data = [];
-        if ($password) {
-            if ($password !== $request->post('password_confirmation')) {
-                return $this->error('密码和确认密码不一致');
+        //return json(Permission::enforce('admin_1', '/system/node/index', 'GET'));
+        Db::beginTransaction();
+        try {
+            $aId = $request->post('id');
+            $password = $request->post('password');
+            $admin = Admin::find($aId);
+            if (!$admin) {
+                return $this->error('管理员不存在');
             }
-            $data['password'] = password_hash($password, PASSWORD_DEFAULT);
-            $admin->update($data);
+
+            if ($password) {
+                if ($password !== $request->post('password_confirmation')) {
+                    return $this->error('密码和确认密码不一致');
+                }
+                $admin->password = password_hash($password, PASSWORD_DEFAULT);
+            }
+            if ($request->post('role_slugs')) {
+                Permission::addRolesForUser('admin_' . $admin->id, $request->post('role_slugs'));
+            }
+            $admin->save();
+            Db::commit();
+            return $this->success($admin, '更新成功');
+        } catch (\Throwable $th) {
+            Db::rollBack();
+            return $this->error($th->getMessage());
         }
-        return $this->success($admin, '更新成功');
     }
 
     public function delete(Request $request)
@@ -74,6 +87,4 @@ class AdminController extends BaseController
         $admin->delete();
         return $this->message('删除成功');
     }
-
-
 }

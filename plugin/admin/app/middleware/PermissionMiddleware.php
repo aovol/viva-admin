@@ -1,0 +1,33 @@
+<?php
+
+namespace plugin\admin\app\middleware;
+
+use Webman\MiddlewareInterface;
+use Webman\Http\Request;
+use Webman\Http\Response;
+use Casbin\WebmanPermission\Permission;
+use Aovol\WebmanAuth\Facade\Auth;
+
+class PermissionMiddleware implements MiddlewareInterface
+{
+    public function process(Request $request, callable $handler): Response
+    {
+        $except = ['/admin/login', '/admin/logout', '/admin/user'];
+        if (in_array($request->path(), $except)) {
+            return $handler($request);
+        }
+        $path = $request->path();
+        $method = $request->method();
+        $user = Auth::guard('admin')->user();
+        if (!$user) {
+            return json(['code' => 401, 'msg' => '未登录']);
+        }
+
+        $permissionPath = preg_replace('/^\/admin(?=\/|$)/', '', $path);
+        if (!Permission::enforce('admin_' . $user->id, $permissionPath, strtoupper($method))) {
+            return json(['code' => 403, 'msg' => '没有访问权限']);
+        }
+
+        return $handler($request);
+    }
+}

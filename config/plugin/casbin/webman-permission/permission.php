@@ -27,7 +27,7 @@ return [
         // 数据库设置
         'database' => [
             'connection' => 'mysql',
-            'rules_table' => 'vi_rules',
+            'rules_table' => 'admin_rules',
             'rules_name' => null
         ],
     ],

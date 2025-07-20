@@ -2,4 +2,10 @@
 
 namespace plugin\admin\config;
 
-return [];
+use plugin\admin\app\middleware\PermissionMiddleware;
+
+return [
+    'plugin.admin' => [
+        'permission' => PermissionMiddleware::class,
+    ],
+];

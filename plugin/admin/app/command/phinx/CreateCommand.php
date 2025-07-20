@@ -16,7 +16,6 @@ class CreateCommand extends \Phinx\Console\Command\Create
     public function __construct()
     {
         parent::__construct();
-        var_dump(base_path() . '/plugin/admin/config/phinx.php');
         $config = new Config(config('plugin.admin.phinx'), base_path() . '/plugin/admin/config/phinx.php');
         $this->setConfig($config);
     }

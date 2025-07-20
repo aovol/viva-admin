@@ -42,7 +42,9 @@
     "casbin/webman-permission": "^2.1",
     "aovol/webman-auth": "dev-main",
     "robmorgan/phinx": "^0.16.10",
-    "aovol/webman-resource": "dev-main"
+    "aovol/webman-resource": "dev-main",
+    "casbin/database-adapter": "^2.1",
+    "webman/redis": "^2.1"
   },
   "suggest": {
     "ext-event": "For better performance. "
