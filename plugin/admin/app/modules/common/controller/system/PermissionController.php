@@ -1,13 +1,10 @@
 <?php
 
-namespace plugin\admin\app\controller;
+namespace plugin\admin\app\common\controller\system;
 
 use support\Request;
-use plugin\admin\app\model\Menu;
-use plugin\admin\resource\MenuResource;
-use plugin\admin\app\model\Permission;
-use plugin\admin\resource\PermissionResource;
-use plugin\admin\app\model\PermissionGroup;
+use plugin\admin\app\common\model\system\Menu;
+use plugin\admin\app\controller\BaseController;
 
 class PermissionController extends BaseController
 {

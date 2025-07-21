@@ -21,6 +21,7 @@ final class AdminLogs extends AbstractMigration
     {
         $table = $this->table('admin_logs');
         $table->addColumn('admin_id', 'integer', ['limit' => 10])
+            ->addColumn('type', 'string', ['limit' => 255])
             ->addColumn('ip', 'string', ['limit' => 255])
             ->addColumn('user_agent', 'string', ['limit' => 255])
             ->addColumn('created_at', 'datetime', ['null' => true])

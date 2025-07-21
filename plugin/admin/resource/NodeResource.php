@@ -17,6 +17,7 @@ class NodeResource extends JsonResource
             'name' => $this->name,
             'icon' => $this->icon,
             'path' => $this->path,
+            'api' => $this->api,
             'component' => $this->component,
             'redirect' => $this->redirect,
             'hidden' => (bool) $this->hidden,

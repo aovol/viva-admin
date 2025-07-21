@@ -1,13 +1,15 @@
 <?php
 
-namespace plugin\admin\app\controller;
+namespace plugin\admin\app\common\controller\system;
 
 use support\Request;
-use plugin\admin\app\model\Node;
+use plugin\admin\app\common\model\system\Node;
 use plugin\admin\resource\NodeResource;
 use WebmanTech\LaravelValidation\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Casbin\WebmanPermission\Permission;
+use Aovol\WebmanAuth\Facade\Auth;
+use plugin\admin\app\controller\BaseController;
 
 class NodeController extends BaseController
 {
@@ -92,12 +94,21 @@ class NodeController extends BaseController
         if ($data['method']) {
             $data['method'] = strtoupper($data['method']);
         }
-        $node->update($data);
+        $user = Auth::guard('admin')->user();
+        $roles = Permission::getRolesForUser('admin_' . $user->id);
         //更新权限
-        if ($data['path'] !== $node->path) {
-            Permission::deletePermission('admin_' . $node->id, $node->path);
-            //Permission::addPolicy('admin_' . $node->id, $data['path'], $data['method']);
+        foreach ($roles as $role) {
+            $api = $data['api'] ?? $node->api;
+            $method = $data['method'] ?? $node->method;
+            if ($api && $api !== $node->api) {
+                Permission::updatePolicy([$role, $node->api, $node->method], [
+                    $role, $api, $method
+                ]);
+            }
         }
+
+        $node->update($data);
+
         return $this->success($node, '节点更新成功');
     }
 

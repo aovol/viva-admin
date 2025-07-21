@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 use Phinx\Seed\AbstractSeed;
 use plugin\admin\app\model\Node;
+use Casbin\WebmanPermission\Permission;
+use plugin\admin\app\model\Admin;
+use plugin\admin\app\model\Role;
 
 class NodeSeeder extends AbstractSeed
 {
@@ -52,25 +55,25 @@ class NodeSeeder extends AbstractSeed
                         'children' => [
                             [
                                 'name' => '查看节点',
-                                'path' => '/system/node/index',
+                                'api' => '/system/node',
                                 'type' => 'permission',
                                 'method' => 'GET',
                             ],
                             [
                                 'name' => '创建节点',
-                                'path' => '/system/node/create',
+                                'api' => '/system/node/create',
                                 'type' => 'permission',
                                 'method' => 'POST',
                             ],
                             [
                                 'name' => '更新节点',
-                                'path' => '/system/node/update',
+                                'api' => '/system/node/update',
                                 'type' => 'permission',
                                 'method' => 'PUT',
                             ],
                             [
                                 'name' => '删除节点',
-                                'path' => '/system/node/delete',
+                                'api' => '/system/node/delete',
                                 'type' => 'permission',
                                 'method' => 'DELETE',
                             ],
@@ -84,25 +87,25 @@ class NodeSeeder extends AbstractSeed
                         'children' => [
                             [
                                 'name' => '查看角色',
-                                'path' => '/system/role/index',
+                                'api' => '/system/role',
                                 'type' => 'permission',
                                 'method' => 'GET',
                             ],
                             [
                                 'name' => '创建角色',
-                                'path' => '/system/role/create',
+                                'api' => '/system/role/create',
                                 'type' => 'permission',
                                 'method' => 'POST',
                             ],
                             [
                                 'name' => '更新角色',
-                                'path' => '/system/role/update',
+                                'api' => '/system/role/update',
                                 'type' => 'permission',
                                 'method' => 'PUT',
                             ],
                             [
                                 'name' => '删除角色',
-                                'path' => '/system/role/delete',
+                                'api' => '/system/role/delete',
                                 'type' => 'permission',
                                 'method' => 'DELETE',
                             ],
@@ -116,25 +119,25 @@ class NodeSeeder extends AbstractSeed
                         'children' => [
                             [
                                 'name' => '查看管理员',
-                                'path' => '/system/admin/index',
+                                'api' => '/system/admin',
                                 'type' => 'permission',
                                 'method' => 'GET',
                             ],
                             [
                                 'name' => '创建管理员',
-                                'path' => '/system/admin/create',
+                                'api' => '/system/admin/create',
                                 'type' => 'permission',
                                 'method' => 'POST',
                             ],
                             [
                                 'name' => '更新管理员',
-                                'path' => '/system/admin/update',
+                                'api' => '/system/admin/update',
                                 'type' => 'permission',
                                 'method' => 'PUT',
                             ],
                             [
                                 'name' => '删除管理员',
-                                'path' => '/system/admin/delete',
+                                'api' => '/system/admin/delete',
                                 'type' => 'permission',
                                 'method' => 'DELETE',
                             ],
@@ -143,14 +146,44 @@ class NodeSeeder extends AbstractSeed
                 ],
             ],
         ];
+
         foreach ($menuItems as $menuItem) {
-            $menu = Node::create($menuItem);
-            // if (isset($menuItem['children'])) {
-            //     foreach ($menuItem['children'] as $child) {
-            //         $child['parent_id'] = $menu->id;
-            //         $child = Menu::create($child);
-            //     }
-            // }
+            if (!Node::where('path', $menuItem['path'])->exists()) {
+                Node::create($menuItem);
+            }
         }
+
+        $admin = Admin::where('name', 'admin')->first();
+        $this->addPermission($menuItems);
+        $this->addRole($admin);
+    }
+
+    public function addPermission($menuItems)
+    {
+        $posts = $this->table('admin_rules');
+        foreach ($menuItems as $menuItem) {
+            if (isset($menuItem['type']) && $menuItem['type'] == 'permission') {
+                $rule = [
+                    'ptype' => 'p',
+                    'v0' => 'admin',
+                    'v1' => $menuItem['api'],
+                    'v2' => $menuItem['method'],
+                ];
+                $posts->insert($rule)->saveData();
+            }
+            if (isset($menuItem['children'])) {
+                $this->addPermission($menuItem['children']);
+            }
+        }
+    }
+
+    public function addRole($admin)
+    {
+        $posts = $this->table('admin_rules');
+        $posts->insert([
+            'ptype' => 'g',
+            'v0' => 'admin_' . $admin->id,
+            'v1' => 'admin',
+        ])->saveData();
     }
 }

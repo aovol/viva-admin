@@ -22,10 +22,10 @@ final class Nodes extends AbstractMigration
         $table = $this->table('nodes');
         $table->addColumn('name', 'string', ['limit' => 255])
             ->addColumn('parent_id', 'integer', ['limit' => 10, 'null' => true, 'default' => 0])
-            ->addColumn('path', 'string', ['limit' => 255])
+            ->addColumn('path', 'string', ['limit' => 255, 'null' => true])
+            ->addColumn('api', 'string', ['limit' => 255, 'null' => true])
             ->addColumn('component', 'string', ['limit' => 255])
             ->addColumn('redirect', 'string', ['limit' => 255])
-            ->addColumn('api', 'string', ['limit' => 255, 'null' => true])
             ->addColumn('method', 'string', ['limit' => 255, 'null' => true])
             ->addColumn('icon', 'string', ['limit' => 255])
             ->addColumn('sort', 'integer', ['limit' => 10, 'default' => 0])
@@ -45,6 +45,7 @@ final class Nodes extends AbstractMigration
             ->addIndex(['status'])
             ->addIndex(['sort'])
             ->addIndex(['path'], ['unique' => true])
+            ->addIndex(['api'], ['unique' => true])
             ->create();
     }
 }

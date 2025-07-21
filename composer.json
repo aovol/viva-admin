@@ -44,7 +44,8 @@
     "robmorgan/phinx": "^0.16.10",
     "aovol/webman-resource": "dev-main",
     "casbin/database-adapter": "^2.1",
-    "webman/redis": "^2.1"
+    "webman/redis": "^2.1",
+    "webman/event": "^1.0"
   },
   "suggest": {
     "ext-event": "For better performance. "
@@ -54,7 +55,8 @@
       "": "./",
       "app\\": "./app",
       "App\\": "./app",
-      "app\\View\\Components\\": "./app/view/components"
+      "app\\View\\Components\\": "./app/view/components",
+      "Aovol\\WebmanAuth\\": "./vendor/aovol/webman-auth/src"
     }
   },
   "scripts": {

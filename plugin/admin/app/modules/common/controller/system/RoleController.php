@@ -1,13 +1,14 @@
 <?php
 
-namespace plugin\admin\app\controller;
+namespace plugin\admin\app\common\controller\system;
 
 use support\Request;
-use plugin\admin\app\model\Role;
+use plugin\admin\app\common\model\system\Role;
 use plugin\admin\resource\RoleResource;
 use Casbin\WebmanPermission\Permission;
-use plugin\admin\app\model\Node;
+use plugin\admin\app\common\model\system\Node;
 use support\Db;
+use plugin\admin\app\controller\BaseController;
 
 class RoleController extends BaseController
 {
@@ -48,8 +49,6 @@ class RoleController extends BaseController
 
     public function update(Request $request)
     {
-        //Permission::addRoleForUser('admin_1', 'admin');
-        //return json(Permission::getImplicitPermissionsForUser('admin_1'));
         $data = $request->post();
         $v = validator($data, [
             'id' => 'required|integer',
@@ -74,17 +73,17 @@ class RoleController extends BaseController
             }
             $role->name = $data['name'];
             $role->slug = $data['slug'];
-            if ($data['node_paths']) {
-                $node_paths = $data['node_paths'];
-                foreach ($node_paths as $path) {
+            if ($data['node_ids']) {
+                $nodeIds = $data['node_ids'];
+                foreach ($nodeIds as $id) {
                     $node = Node::where([
-                        'path' => $path,
+                        'id' => $id,
                         'type' => 'permission',
                     ])->first();
                     if (!$node) {
                         continue;
                     }
-                    Permission::addPolicy($role->slug, $node->path, $node->method);
+                    Permission::addPolicy($role->slug, $node->api, $node->method);
                 }
             }
             $role->save();

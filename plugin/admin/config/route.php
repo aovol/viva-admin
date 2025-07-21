@@ -1,11 +1,11 @@
 <?php
 
 use Webman\Route;
-use plugin\admin\app\controller\AuthController;
-use plugin\admin\app\controller\PermissionController;
-use plugin\admin\app\controller\RoleController;
-use plugin\admin\app\controller\AdminController;
-use plugin\admin\app\controller\NodeController;
+use plugin\admin\app\common\controller\AuthController;
+use plugin\admin\app\common\controller\system\PermissionController;
+use plugin\admin\app\common\controller\system\RoleController;
+use plugin\admin\app\common\controller\system\AdminController;
+use plugin\admin\app\common\controller\system\NodeController;
 
 Route::disableDefaultRoute('admin');
 //跨域检测

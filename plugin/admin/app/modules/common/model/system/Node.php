@@ -1,6 +1,6 @@
 <?php
 
-namespace plugin\admin\app\model;
+namespace plugin\admin\app\common\model\system;
 
 use support\Model;
 use Kalnoy\Nestedset\NodeTrait;
@@ -13,6 +13,7 @@ class Node extends Model
         'name',
         'parent_id',
         'path',
+        'api',
         'component',
         'redirect',
         'icon',

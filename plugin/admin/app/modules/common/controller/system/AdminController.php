@@ -1,11 +1,12 @@
 <?php
 
-namespace plugin\admin\app\controller;
+namespace plugin\admin\app\common\controller\system;
 
 use support\Request;
-use plugin\admin\app\model\Admin;
+use plugin\admin\app\common\model\system\Admin;
 use plugin\admin\resource\AdminResource;
 use Casbin\WebmanPermission\Permission;
+use plugin\admin\app\controller\BaseController;
 use support\Db;
 
 class AdminController extends BaseController

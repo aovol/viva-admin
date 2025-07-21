@@ -1,6 +1,6 @@
 <?php
 
-namespace plugin\admin\app\model;
+namespace plugin\admin\app\common\model\system;
 
 use Aovol\WebmanAuth\Model\AuthModelInterface;
 use support\Model;
