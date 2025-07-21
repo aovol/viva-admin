@@ -15,8 +15,6 @@ class NodeResource extends JsonResource
             'id' => $this->id,
             'type' => $this->type,
             'name' => $this->name,
-            'guard_name' => $this->guard_name,
-            'slug' => $this->slug,
             'icon' => $this->icon,
             'path' => $this->path,
             'component' => $this->component,
@@ -27,6 +25,7 @@ class NodeResource extends JsonResource
             'status' => (bool) $this->status,
             'is_show' => (bool) $this->is_show,
             'show_page_head' => (bool) $this->show_page_head,
+            'method' => $this->method,
             'created_at' => $this->created_at ? Carbon::parse($this->created_at)->toDateTimeString() : null,
         ];
         if ($this->children) {

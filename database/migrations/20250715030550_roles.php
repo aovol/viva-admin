@@ -21,14 +21,12 @@ final class Roles extends AbstractMigration
     {
         $table = $this->table('roles');
         $table->addColumn('name', 'string', ['limit' => 255])
-            ->addColumn('guard_name', 'string', ['limit' => 255])
             ->addColumn('slug', 'string', ['limit' => 255])
             ->addColumn('description', 'string', ['limit' => 255])
             ->addColumn('created_at', 'datetime', ['null' => true])
             ->addColumn('updated_at', 'datetime', ['null' => true])
             ->addIndex(['name'], ['unique' => true])
             ->addIndex(['slug'], ['unique' => true])
-            ->addIndex(['guard_name'])
             ->create();
     }
 }

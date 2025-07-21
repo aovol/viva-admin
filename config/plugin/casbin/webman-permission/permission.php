@@ -26,8 +26,8 @@ return [
         'adapter' => Casbin\WebmanPermission\Adapter\LaravelDatabaseAdapter::class, // Laravel 适配器
         // 数据库设置
         'database' => [
-            'connection' => '',
-            'rules_table' => 'vi_rules',
+            'connection' => 'mysql',
+            'rules_table' => 'admin_rules',
             'rules_name' => null
         ],
     ],

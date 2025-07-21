@@ -6,6 +6,8 @@ use support\Request;
 use plugin\admin\app\model\Node;
 use plugin\admin\resource\NodeResource;
 use WebmanTech\LaravelValidation\Facades\Validator;
+use Illuminate\Validation\Rule;
+use Casbin\WebmanPermission\Permission;
 
 class NodeController extends BaseController
 {
@@ -32,51 +34,70 @@ class NodeController extends BaseController
     {
         $data = $request->post();
         $data['parent_id'] = $data['parent_id'] ?? 0;
-
         $validator = Validator::make($data, [
-            'name' => 'required_if:type,menu|string|max:255',
-            'slug' => 'required_if:type,menu|string|max:255|unique:nodes,slug',
-            'path' => 'required_if:type,menu|string|max:255',
+            'name' => [
+                Rule::requiredIf($data['type'] == 'menu' || ($data['type'] == 'permission' && $data['create_type'] == 'single')),
+            ],
+            'path' => [
+                Rule::requiredIf($data['type'] == 'menu' || ($data['type'] == 'permission' && $data['create_type'] == 'single')),
+                'unique:nodes,path',
+            ],
+            'method' => Rule::requiredIf($data['type'] == 'permission' && $data['create_type'] == 'single'),
+            'batch_permissions' => Rule::requiredIf($data['type'] == 'permission' && $data['create_type'] == 'batch'),
         ], [
-            'name.required_if' => '请输入节点名称',
-            'slug.required_if' => '请输入节点别名',
-            'slug.unique' => '节点别名已存在',
-            'path.required_if' => '请输入节点路径',
+            'name.required' => '请输入节点名称',
+            'path.required' => '请输入节点唯一标识',
+            'path.unique' => $data['type'] == 'menu' ? '路由已存在' : '权限标识已存在',
+            'method.required' => '请选择请求方法',
+            'batch_permissions.required' => '请输入批量添加的节点',
         ]);
-        $validator->after(function ($validator) use ($data) {
-            if ($data['type'] == 'permission' && $data['create_type'] == 'batch' && empty($data['batch_permissions'])) {
-                $validator->errors()->add('batch_permissions', '请输入批量添加的节点');
-            }
-        });
+
         if ($validator->fails()) {
             return $this->error($validator->errors()->first());
         }
 
-
-
         if ($request->post('create_type') === 'single') {
+            if ($data['method']) {
+                $data['method'] = strtoupper($data['method']);
+            }
             Node::create($data);
         } else {
             $permissions = explode("\n", $data['batch_permissions']);
             foreach ($permissions as $permission) {
                 $permission = explode('|', $permission);
+                if (count($permission) < 3) {
+                    return $this->error('批量添加的节点格式不正确');
+                }
+                //验证unique:nodes,path
+                if (Node::where('path', $permission[1])->exists()) {
+                    return $this->error('节点唯一标识已存在：' . $permission[1]);
+                }
                 Node::create([
                     'name' => $permission[0],
-                    'slug' => $permission[1],
-                    'api' => $permission[2] ?? '',
+                    'path' => $permission[1],
+                    'method' => strtoupper($permission[2]),
                     'type' => 'permission',
-                    'parent_id' => $data['parent_id'],
+                    'parent_id' => $data['parent_id'] ?? 0,
                 ]);
             }
-
         }
         return $this->message('节点创建成功');
     }
 
     public function update(Request $request)
     {
-        $node = Node::find($request->post('id'));
-        $node->update($request->post());
+        $data = $request->post();
+        $node = Node::find($data['id']);
+
+        if ($data['method']) {
+            $data['method'] = strtoupper($data['method']);
+        }
+        $node->update($data);
+        //更新权限
+        if ($data['path'] !== $node->path) {
+            Permission::deletePermission('admin_' . $node->id, $node->path);
+            //Permission::addPolicy('admin_' . $node->id, $data['path'], $data['method']);
+        }
         return $this->success($node, '节点更新成功');
     }
 

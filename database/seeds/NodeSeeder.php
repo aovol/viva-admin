@@ -20,21 +20,18 @@ class NodeSeeder extends AbstractSeed
         $menuItems = [
             [
                 'name' => '仪表盘',
-                'slug' => 'dashboard',
                 'path' => '/dashboard',
                 'redirect' => '/dashboard/index',
                 'icon' => 'dashboard',
                 'children' => [
                     [
                         'name' => '概览',
-                        'slug' => 'dashboard-index',
                         'path' => '/dashboard/index',
                         'component' => '/dashboard/index',
                         'icon' => 'dashboard',
                     ],
                     [
                         'name' => '统计',
-                        'slug' => 'dashboard-statistics',
                         'path' => '/dashboard/statistics',
                         'component' => '/dashboard/statistics',
                         'icon' => 'dashboard',
@@ -43,31 +40,105 @@ class NodeSeeder extends AbstractSeed
             ],
             [
                 'name' => '系统管理',
-                'slug' => 'system',
                 'path' => '/system',
                 'redirect' => '/system/node',
                 'icon' => 'dashboard',
                 'children' => [
                     [
                         'name' => '节点',
-                        'slug' => 'system-node',
                         'path' => '/system/node',
                         'component' => '/system/node/index',
                         'icon' => 'menu',
+                        'children' => [
+                            [
+                                'name' => '查看节点',
+                                'path' => '/system/node/index',
+                                'type' => 'permission',
+                                'method' => 'GET',
+                            ],
+                            [
+                                'name' => '创建节点',
+                                'path' => '/system/node/create',
+                                'type' => 'permission',
+                                'method' => 'POST',
+                            ],
+                            [
+                                'name' => '更新节点',
+                                'path' => '/system/node/update',
+                                'type' => 'permission',
+                                'method' => 'PUT',
+                            ],
+                            [
+                                'name' => '删除节点',
+                                'path' => '/system/node/delete',
+                                'type' => 'permission',
+                                'method' => 'DELETE',
+                            ],
+                        ],
                     ],
                     [
                         'name' => '角色',
-                        'slug' => 'system-role',
                         'path' => '/system/role',
                         'component' => '/system/role/index',
                         'icon' => 'role',
+                        'children' => [
+                            [
+                                'name' => '查看角色',
+                                'path' => '/system/role/index',
+                                'type' => 'permission',
+                                'method' => 'GET',
+                            ],
+                            [
+                                'name' => '创建角色',
+                                'path' => '/system/role/create',
+                                'type' => 'permission',
+                                'method' => 'POST',
+                            ],
+                            [
+                                'name' => '更新角色',
+                                'path' => '/system/role/update',
+                                'type' => 'permission',
+                                'method' => 'PUT',
+                            ],
+                            [
+                                'name' => '删除角色',
+                                'path' => '/system/role/delete',
+                                'type' => 'permission',
+                                'method' => 'DELETE',
+                            ],
+                        ],
                     ],
                     [
                         'name' => '管理员',
-                        'slug' => 'system-admin',
                         'path' => '/system/admin',
                         'component' => '/system/admin/index',
                         'icon' => 'admin',
+                        'children' => [
+                            [
+                                'name' => '查看管理员',
+                                'path' => '/system/admin/index',
+                                'type' => 'permission',
+                                'method' => 'GET',
+                            ],
+                            [
+                                'name' => '创建管理员',
+                                'path' => '/system/admin/create',
+                                'type' => 'permission',
+                                'method' => 'POST',
+                            ],
+                            [
+                                'name' => '更新管理员',
+                                'path' => '/system/admin/update',
+                                'type' => 'permission',
+                                'method' => 'PUT',
+                            ],
+                            [
+                                'name' => '删除管理员',
+                                'path' => '/system/admin/delete',
+                                'type' => 'permission',
+                                'method' => 'DELETE',
+                            ],
+                        ],
                     ],
                 ],
             ],

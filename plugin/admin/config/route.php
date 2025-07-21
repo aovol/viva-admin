@@ -20,22 +20,22 @@ Route::group('/admin', function () {
         Route::group('/admin', function () {
             Route::get('', [AdminController::class, 'index']);
             Route::post('/create', [AdminController::class, 'create']);
-            Route::post('/update', [AdminController::class, 'update']);
-            Route::post('/delete', [AdminController::class, 'delete']);
+            Route::put('/update', [AdminController::class, 'update']);
+            Route::delete('/delete', [AdminController::class, 'delete']);
         });
 
         Route::group('/node', function () {
             Route::get('', [NodeController::class, 'index']);
             Route::post('/create', [NodeController::class, 'create']);
-            Route::post('/update', [NodeController::class, 'update']);
-            Route::post('/delete', [NodeController::class, 'delete']);
+            Route::put('/update', [NodeController::class, 'update']);
+            Route::delete('/delete', [NodeController::class, 'delete']);
         });
 
         Route::group('/permission', function () {
             Route::get('', [PermissionController::class, 'index']);
             Route::post('/create', [PermissionController::class, 'create']);
-            Route::post('/update', [PermissionController::class, 'update']);
-            Route::post('/delete', [PermissionController::class, 'delete']);
+            Route::put('/update', [PermissionController::class, 'update']);
+            Route::delete('/delete', [PermissionController::class, 'delete']);
             Route::get('/controllers', [PermissionController::class, 'controllers']);
             Route::get('/groups', [PermissionController::class, 'groups']);
         });
@@ -43,8 +43,8 @@ Route::group('/admin', function () {
         Route::group('/role', function () {
             Route::get('', [RoleController::class, 'index']);
             Route::post('/create', [RoleController::class, 'create']);
-            Route::post('/update', [RoleController::class, 'update']);
-            Route::post('/delete', [RoleController::class, 'delete']);
+            Route::put('/update', [RoleController::class, 'update']);
+            Route::delete('/delete', [RoleController::class, 'delete']);
         });
     });
 });

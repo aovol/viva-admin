@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
 
-final class Rules extends AbstractMigration
+final class AdminRules extends AbstractMigration
 {
     /**
      * Change Method.
@@ -19,15 +19,15 @@ final class Rules extends AbstractMigration
      */
     public function change(): void
     {
-        $table = $this->table('rules');
-        $table->addColumn('p_type', 'string', ['limit' => 128, 'null' => false, 'default' => ''])
+        $table = $this->table('admin_rules');
+        $table->addColumn('ptype', 'string', ['limit' => 128, 'null' => false, 'default' => ''])
             ->addColumn('v0', 'string', ['limit' => 128, 'null' => false, 'default' => ''])
             ->addColumn('v1', 'string', ['limit' => 128, 'null' => false, 'default' => ''])
             ->addColumn('v2', 'string', ['limit' => 128, 'null' => false, 'default' => ''])
             ->addColumn('v3', 'string', ['limit' => 128, 'null' => false, 'default' => ''])
             ->addColumn('v4', 'string', ['limit' => 128, 'null' => false, 'default' => ''])
             ->addColumn('v5', 'string', ['limit' => 128, 'null' => false, 'default' => ''])
-            ->addIndex(['p_type'])
+            ->addIndex(['ptype'])
             ->addIndex(['v0'])
             ->addIndex(['v1'])
             ->addIndex(['v2'])
