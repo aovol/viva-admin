@@ -7,6 +7,7 @@ use Webman\Http\Request;
 use Webman\Http\Response;
 use Casbin\WebmanPermission\Permission;
 use Aovol\WebmanAuth\Facade\Auth;
+use plugin\admin\app\model\Node;
 
 class PermissionMiddleware implements MiddlewareInterface
 {
@@ -24,7 +25,16 @@ class PermissionMiddleware implements MiddlewareInterface
         }
 
         $permissionPath = preg_replace('/^\/admin(?=\/|$)/', '', $path);
-        if (!Permission::enforce('admin_' . $user->id, $permissionPath, strtoupper($method))) {
+
+        $can = false;
+        $nodes = Node::where('path', $permissionPath)->get();
+        foreach ($nodes as $node) {
+            if (Permission::enforce('admin_' . $user->id, $node->slug, strtoupper($method))) {
+                $can = true;
+                break;
+            }
+        }
+        if (!$can) {
             return response('permission forbidden', 403);
         }
 

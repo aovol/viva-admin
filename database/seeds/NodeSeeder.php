@@ -166,11 +166,11 @@ class NodeSeeder extends AbstractSeed
             ],
         ];
 
-        // foreach ($menuItems as $menuItem) {
-        //     if (!Node::where('slug', $menuItem['slug'])->exists()) {
-        //         Node::create($menuItem);
-        //     }
-        // }
+        foreach ($menuItems as $menuItem) {
+            if (!Node::where('slug', $menuItem['slug'])->exists()) {
+                Node::create($menuItem);
+            }
+        }
 
         $admin = Admin::where('name', 'admin')->first();
         $this->addPermission($menuItems);
