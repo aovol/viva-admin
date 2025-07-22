@@ -2,8 +2,8 @@
 
 namespace plugin\admin\app\event;
 
-use plugin\admin\app\model\system\Admin;
-use plugin\admin\app\model\system\AdminLog;
+use plugin\admin\app\model\Admin;
+use plugin\admin\app\model\AdminLog;
 
 class AdminEvent
 {

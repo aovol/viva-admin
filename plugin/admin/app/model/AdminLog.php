@@ -1,6 +1,6 @@
 <?php
 
-namespace plugin\admin\app\common\model\system;
+namespace plugin\admin\app\model;
 
 use support\Model;
 

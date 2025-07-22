@@ -1,12 +1,12 @@
 <?php
 
-namespace plugin\admin\app\common\controller\system;
+namespace plugin\admin\app\controller\system;
 
 use support\Request;
-use plugin\admin\app\common\model\system\Role;
+use plugin\admin\app\model\Role;
 use plugin\admin\resource\RoleResource;
 use Casbin\WebmanPermission\Permission;
-use plugin\admin\app\common\model\system\Node;
+use plugin\admin\app\model\Node;
 use support\Db;
 use plugin\admin\app\controller\BaseController;
 

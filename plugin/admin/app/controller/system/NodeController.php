@@ -1,9 +1,9 @@
 <?php
 
-namespace plugin\admin\app\common\controller\system;
+namespace plugin\admin\app\controller\system;
 
 use support\Request;
-use plugin\admin\app\common\model\system\Node;
+use plugin\admin\app\model\Node;
 use plugin\admin\resource\NodeResource;
 use WebmanTech\LaravelValidation\Facades\Validator;
 use Illuminate\Validation\Rule;

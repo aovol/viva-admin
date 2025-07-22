@@ -1,11 +1,10 @@
 <?php
 
 use Webman\Route;
-use plugin\admin\app\common\controller\AuthController;
-use plugin\admin\app\common\controller\system\PermissionController;
-use plugin\admin\app\common\controller\system\RoleController;
-use plugin\admin\app\common\controller\system\AdminController;
-use plugin\admin\app\common\controller\system\NodeController;
+use plugin\admin\app\controller\AuthController;
+use plugin\admin\app\controller\system\RoleController;
+use plugin\admin\app\controller\system\AdminController;
+use plugin\admin\app\controller\system\NodeController;
 
 Route::disableDefaultRoute('admin');
 //跨域检测
@@ -29,15 +28,6 @@ Route::group('/admin', function () {
             Route::post('/create', [NodeController::class, 'create']);
             Route::put('/update', [NodeController::class, 'update']);
             Route::delete('/delete', [NodeController::class, 'delete']);
-        });
-
-        Route::group('/permission', function () {
-            Route::get('', [PermissionController::class, 'index']);
-            Route::post('/create', [PermissionController::class, 'create']);
-            Route::put('/update', [PermissionController::class, 'update']);
-            Route::delete('/delete', [PermissionController::class, 'delete']);
-            Route::get('/controllers', [PermissionController::class, 'controllers']);
-            Route::get('/groups', [PermissionController::class, 'groups']);
         });
 
         Route::group('/role', function () {

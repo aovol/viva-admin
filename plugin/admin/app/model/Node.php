@@ -1,6 +1,6 @@
 <?php
 
-namespace plugin\admin\app\common\model\system;
+namespace plugin\admin\app\model;
 
 use support\Model;
 use Kalnoy\Nestedset\NodeTrait;
@@ -12,8 +12,8 @@ class Node extends Model
     protected $fillable = [
         'name',
         'parent_id',
+        'slug',
         'path',
-        'api',
         'component',
         'redirect',
         'icon',

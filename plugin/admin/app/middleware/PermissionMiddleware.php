@@ -20,12 +20,12 @@ class PermissionMiddleware implements MiddlewareInterface
         $method = $request->method();
         $user = Auth::guard('admin')->user();
         if (!$user) {
-            return json(['code' => 401, 'msg' => '未登录']);
+            return response('unauthorized', 401);
         }
 
         $permissionPath = preg_replace('/^\/admin(?=\/|$)/', '', $path);
         if (!Permission::enforce('admin_' . $user->id, $permissionPath, strtoupper($method))) {
-            return json(['code' => 403, 'msg' => '没有访问权限']);
+            return response('permission forbidden', 403);
         }
 
         return $handler($request);
