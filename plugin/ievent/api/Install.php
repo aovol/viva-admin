@@ -1,6 +1,6 @@
 <?php
 
-namespace plugin\event\api;
+namespace plugin\ievent\api;
 
 use plugin\admin\api\Menu;
 use support\Db;

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a825f7ab48e2818422d564e8b10342f2",
+    "content-hash": "253ae66b0c0d38bda51748856861ff19",
     "packages": [
         {
             "name": "aovol/webman-auth",
@@ -653,16 +653,16 @@
         },
         {
             "name": "casbin/webman-permission",
-            "version": "v2.1.0",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-casbin/webman-permission.git",
-                "reference": "2cccd09d20c96caeafdf0bce157801b971ba088d"
+                "reference": "2e963f1c3a9f5c88130ccf4d953b476c20e7d2fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-casbin/webman-permission/zipball/2cccd09d20c96caeafdf0bce157801b971ba088d",
-                "reference": "2cccd09d20c96caeafdf0bce157801b971ba088d",
+                "url": "https://api.github.com/repos/php-casbin/webman-permission/zipball/2e963f1c3a9f5c88130ccf4d953b476c20e7d2fd",
+                "reference": "2e963f1c3a9f5c88130ccf4d953b476c20e7d2fd",
                 "shasum": ""
             },
             "require": {
@@ -674,12 +674,13 @@
                 "workerman/redis": "^2.0"
             },
             "require-dev": {
-                "illuminate/database": "^8.83",
-                "illuminate/events": "^8.83",
-                "illuminate/pagination": "^8.83",
+                "illuminate/events": "^12.20",
+                "illuminate/pagination": "^12.20",
                 "php-coveralls/php-coveralls": "^2.7",
-                "phpunit/phpunit": "^11.4",
+                "phpunit/phpunit": "^10.5",
                 "psr/container": "^1.1.1",
+                "symfony/var-dumper": "^7.3",
+                "webman/database": "^2.1",
                 "webman/think-orm": "^1.0",
                 "workerman/webman": "^1.5||^2.0"
             },
@@ -714,9 +715,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-casbin/webman-permission/issues",
-                "source": "https://github.com/php-casbin/webman-permission/tree/v2.1.0"
+                "source": "https://github.com/php-casbin/webman-permission/tree/v2.2.0"
             },
-            "time": "2025-04-30T03:40:56+00:00"
+            "time": "2025-07-21T09:33:35+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -6412,46 +6413,8 @@
             "time": "2024-11-21T01:49:47+00:00"
         },
         {
-            "name": "webman-tech/laravel-translation",
-            "version": "v12.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/webman-tech/laravel-translation.git",
-                "reference": "d938d49abf131a53756ffedc9a3a49027d590a0a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/webman-tech/laravel-translation/zipball/d938d49abf131a53756ffedc9a3a49027d590a0a",
-                "reference": "d938d49abf131a53756ffedc9a3a49027d590a0a",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/translation": "^12.0",
-                "php": "^8.2"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "helper.php"
-                ],
-                "psr-4": {
-                    "WebmanTech\\LaravelTranslation\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Webman plugin webman-tech/laravel-translation",
-            "support": {
-                "issues": "https://github.com/webman-tech/laravel-translation/issues",
-                "source": "https://github.com/webman-tech/laravel-translation/tree/v12.0.3"
-            },
-            "time": "2025-06-04T03:04:05+00:00"
-        },
-        {
             "name": "webman-tech/laravel-validation",
-            "version": "v12.0.3",
+            "version": "v12.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webman-tech/laravel-validation.git",
@@ -6483,7 +6446,7 @@
             "description": "Webman plugin webman-tech/laravel-validation",
             "support": {
                 "issues": "https://github.com/webman-tech/laravel-validation/issues",
-                "source": "https://github.com/webman-tech/laravel-validation/tree/v12.0.3"
+                "source": "https://github.com/webman-tech/laravel-validation/tree/v12.0.4"
             },
             "time": "2025-06-04T03:04:05+00:00"
         },
