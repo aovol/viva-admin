@@ -2,6 +2,8 @@
 
 namespace plugin\admin\api;
 
+use plugin\admin\app\model\Node;
+
 class Menu
 {
     /**
@@ -11,23 +13,29 @@ class Menu
      */
     public static function import(array $menus, $parent = 'root')
     {
-        if (is_numeric(key($menu_tree)) && !isset($menu_tree['key'])) {
-            foreach ($menu_tree as $item) {
-                static::import($item);
+        foreach ($menus as $menu) {
+            if ($parent === 'root') {
+                $node = Node::create($menu);
+            } else {
+                $parent_node = Node::where('slug', $parent)->first();
+                if ($parent_node) {
+                    $menu['parent_id'] = $parent_node->id;
+                    Node::create($menu, $parent_node);
+                }
             }
-            return;
         }
-        $children = $menu_tree['children'] ?? [];
-        unset($menu_tree['children']);
-        if ($old_menu = Menu::get($menu_tree['key'])) {
-            $pid = $old_menu['id'];
-            Rule::where('key', $menu_tree['key'])->update($menu_tree);
-        } else {
-            $pid = static::add($menu_tree);
-        }
-        foreach ($children as $menu) {
-            $menu['pid'] = $pid;
-            static::import($menu);
+    }
+
+    /**
+     * 删除菜单
+     * @param string $slug
+     * @return void
+     */
+    public static function delete(string $slug)
+    {
+        $node = Node::where('slug', $slug)->first();
+        if ($node) {
+            $node->delete();
         }
     }
 }

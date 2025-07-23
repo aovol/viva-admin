@@ -13,7 +13,7 @@ class Install
      * 数据库连接
      */
     protected static $connection = 'plugin.admin.mysql';
-    
+
     /**
      * 安装
      *
@@ -25,8 +25,8 @@ class Install
         // 安装数据库
         static::installSql();
         // 导入菜单
-        if($menus = static::getMenus()) {
-            Menu::import($menus);
+        if ($menus = static::getMenus()) {
+            Menu::import($menus, 'content');
         }
     }
 
@@ -38,12 +38,9 @@ class Install
      */
     public static function uninstall($version)
     {
-        // 删除菜单
         foreach (static::getMenus() as $menu) {
-            Menu::delete($menu['key']);
+            Menu::delete($menu['slug']);
         }
-        // 卸载数据库
-        static::uninstallSql();
     }
 
     /**
@@ -114,7 +111,7 @@ class Install
             Menu::delete($name);
         }
     }
-    
+
     /**
      * 安装SQL
      *
@@ -124,13 +121,14 @@ class Install
     {
         static::importSql(__DIR__ . '/../install.sql');
     }
-    
+
     /**
      * 卸载SQL
      *
      * @return void
      */
-    protected static function uninstallSql() {
+    protected static function uninstallSql()
+    {
         // 如果卸载数据库文件存在责直接使用
         $uninstallSqlFile = __DIR__ . '/../uninstall.sql';
         if (is_file($uninstallSqlFile)) {
@@ -152,7 +150,7 @@ class Install
         static::importSql($uninstallSqlFile);
         unlink($uninstallSqlFile);
     }
-    
+
     /**
      * 导入数据库
      *
@@ -167,9 +165,9 @@ class Install
             if ($sql = trim($sql)) {
                 try {
                     Db::connection(static::$connection)->statement($sql);
-                } catch (Throwable $e) {}
+                } catch (Throwable $e) {
+                }
             }
         }
     }
-
 }
