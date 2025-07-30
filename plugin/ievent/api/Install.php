@@ -8,7 +8,6 @@ use Throwable;
 
 class Install
 {
-
     /**
      * 数据库连接
      */
@@ -26,7 +25,7 @@ class Install
         static::installSql();
         // 导入菜单
         if ($menus = static::getMenus()) {
-            Menu::import($menus, 'content');
+            Menu::import($menus);
         }
     }
 
